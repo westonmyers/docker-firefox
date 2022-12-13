@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    container_name: firefox-app
+    image: firefox-app
+    build:
+      context: .
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTH_COOKIE=${XAUTH_COOKIE}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./user_home-firefox:/home/firefox
+    network_mode: host
+    platform: linux/amd64
+    user: firefox
+    command: /opt/firefox/firefox-bin
